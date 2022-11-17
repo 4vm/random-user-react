@@ -1,5 +1,8 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
+
+import axios from 'axios'
+
+import Card from './components/Card'
 
 function App() {
   const [userDetails, setUserDetails] = useState([])
@@ -19,14 +22,21 @@ function App() {
     fetchUser()
   }, [])
 
-  const text = JSON.stringify(userDetails)
+  //const text = JSON.stringify(userDetails)
   console.log(userDetails)
 
   return (
     <div className="App">
       <h1>Random User</h1>
-      <p>{text}</p>
       <button onClick={fetchUser}>fetch</button>
+      <Card
+        picture={userDetails?.picture?.large}
+        firstName={userDetails?.name?.first}
+        lastName={userDetails?.name?.last}
+        email={userDetails?.email}
+        phone={userDetails?.phone}
+        country={userDetails?.location?.country}
+      />
     </div>
   )
 }
